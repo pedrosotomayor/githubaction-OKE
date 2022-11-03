@@ -64,7 +64,7 @@ jobs:
         uses: oracle-actions/configure-kubectl-oke@v1.0
         id: kubectl-oke-action
         with:
-          cluster: ${{ test.OKE_CLUSTER_OCID }}
+          cluster: ${{ secrets.test.OKE_CLUSTER_OCID }}
       
       - name: Helm Deploy
         id: helm-deploy
