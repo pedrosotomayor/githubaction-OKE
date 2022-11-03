@@ -6,11 +6,11 @@ on:
       - master
 
 env:
-  OCI_CLI_USER: ${{ secret.OCI_CLI_USER }}
-  OCI_CLI_TENANCY: ${{ secret.OCI_CLI_TENANCY }}
-  OCI_CLI_FINGERPRINT: ${{ secret.OCI_CLI_FINGERPRINT }}
-  OCI_CLI_KEY_CONTENT: ${{ secret.OCI_CLI_KEY_CONTENT }}
-  OCI_CLI_REGION: ${{ secret.OCI_CLI_REGION }}
+  OCI_CLI_USER: ${{ secrets.test.OCI_CLI_USER }}
+  OCI_CLI_TENANCY: ${{ secrets.test.OCI_CLI_TENANCY }}
+  OCI_CLI_FINGERPRINT: ${{ secrets.test.OCI_CLI_FINGERPRINT }}
+  OCI_CLI_KEY_CONTENT: ${{ secrets.test.OCI_CLI_KEY_CONTENT }}
+  OCI_CLI_REGION: ${{ secrets.test.OCI_CLI_REGION }}
 
 jobs:
 
@@ -24,24 +24,24 @@ jobs:
         id: get-ocir
         uses: oracle-actions/get-ocir-repository@v1.0
         with:
-          name: ${{ secret.OCI_DOCKER_REPO }}
-          compartment: ${{ secret.OCI_COMPARTMENT_OCID }}
+          name: ${{ secrets.test.OCI_DOCKER_REPO }}
+          compartment: ${{ secrets.test.OCI_COMPARTMENT_OCID }}
       
       - name: Log Into OCIR
         uses: oracle-actions/login-ocir@v1.0
         id: login-ocir
         with:
-          auth_token: ${{ secret.OCI_AUTH_TOKEN }}
+          auth_token: ${{ secrets.test.OCI_AUTH_TOKEN }}
       
       - name: Docker Build
         id: docker-build
         run: |
-          docker build -t ${{ secret.OCI_DOCKER_REPO }}:${{ github.sha }} .
+          docker build -t ${{ secrets.test.OCI_DOCKER_REPO }}:${{ github.sha }} .
       
       - name: Docker Push
         id: docker-push
         run: |
-          docker push ${{ secret.OCI_DOCKER_REPO }}:${{ github.sha }}
+          docker push ${{ secrets.test.OCI_DOCKER_REPO }}:${{ github.sha }}
       
       - name: Upload Chart 
         uses: actions/upload-artifact@master
