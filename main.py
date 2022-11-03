@@ -13,3 +13,8 @@ def hello():
 @app.get("/name/{name}")
 def hello_name(name: str):
     return {"Hello": name}
+
+
+
+
+
