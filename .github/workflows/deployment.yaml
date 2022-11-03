@@ -6,9 +6,9 @@ on:
       - master
 
 env:
-  OCI_CLI_USER: ${{ secrets.test.OCI_CLI_USER }}
-  OCI_CLI_TENANCY: ${{ secrets.test.OCI_CLI_TENANCY }}
-  OCI_CLI_FINGERPRINT: ${{ secrets.test.OCI_CLI_FINGERPRINT }}
+  OCI_CLI_USER: ocid1.user.oc1..aaaaaaaaclga66dcd36wd4lhv35rd4zljvhyvpnxiwysgpn43ehe6ehkukcq
+  OCI_CLI_TENANCY: ocid1.tenancy.oc1..aaaaaaaapjiukwuohcn2ksmdfgcnlcbwennalukq5tgdx5375exrpoydxrda
+  OCI_CLI_FINGERPRINT: 3b:1e:ab:e2:e9:80:99:94:68:8d:66:3d:49:a6:98:fd
   OCI_CLI_KEY_CONTENT: ${{ secrets.test.OCI_CLI_KEY_CONTENT }}
   OCI_CLI_REGION: ${{ secrets.test.OCI_CLI_REGION }}
 
